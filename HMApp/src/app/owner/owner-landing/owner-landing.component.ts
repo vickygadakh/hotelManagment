@@ -52,7 +52,7 @@ export class OwnerLandingComponent {
   }
   formDetails() {
     this.hoteRegiForm = this.formBuilder.group({
-      ownerName: [ this.dataById[0]?.ownerName ? this.dataById[0].ownerName : 'Poonam', [Validators.required]],
+      ownerName: [ this.dataById[0]?.ownerName ? this.dataById[0].ownerName : 'Vicky', [Validators.required]],
       mob: [this.dataById[0]?.mob ? this.dataById[0].mob : 989898999, [Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       hotelName: [this.dataById[0]?.hotelName ? this.dataById[0].hotelName :''],
       password: [this.dataById[0]?.password ? this.dataById[0].password :''],

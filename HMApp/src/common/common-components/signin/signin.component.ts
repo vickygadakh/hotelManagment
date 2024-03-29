@@ -9,8 +9,8 @@ import { ApicallService } from 'src/common/commonServices/apicall.service';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent {
-  name = 'Poonam';
-  pass ='poo@123';
+  name = 'Rushikesh';
+  pass ='rushi@123';
   isShowPass = false;
   userData: any;
   isValid = false;

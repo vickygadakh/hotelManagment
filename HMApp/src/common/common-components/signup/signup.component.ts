@@ -25,7 +25,7 @@ export class SignupComponent {
 
   formDetails() {
     this.signUpForm = this.formBuilder.group({
-      fullName: ['Poonam Patil', [Validators.required, this.whiteSpaceRemoveValidator]],
+      fullName: ['Rushikesh Gadakh', [Validators.required, this.whiteSpaceRemoveValidator]],
       mob: [989898999, [Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
       gender: ['male'],
       pan: [],
