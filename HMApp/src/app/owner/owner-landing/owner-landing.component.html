@@ -1,1 +1,74 @@
-<p>owner-landing works!</p>
+<button mat-raised-button color="accent" (click)="back()">Back</button>
+<button mat-raised-button color="accent" (click)="newHotelReg()">New Hotel Register</button>
+<button mat-raised-button color="accent" (click)="viewHotels()">View Hotels</button>
+
+<div *ngIf="showRegForm">
+    <form [formGroup]="hoteRegiForm">
+
+        <mat-form-field class="form-fields">
+            <mat-label>Owner Name</mat-label>
+            <input type="text" matInput formControlName="ownerName">
+
+            <mat-hint *ngIf="!hoteRegiForm.get('ownerName')?.touched"> Please enter your name here</mat-hint>
+            <mat-error
+                *ngIf="hoteRegiForm.get('ownerName')?.errors?.['required'] && hoteRegiForm.get('ownerName')?.touched">Full
+                Name is required</mat-error>
+            <mat-error *ngIf="hoteRegiForm.get('ownerName')?.errors?.['whiteSpaceError']">
+                ownerName should not include more than one space</mat-error>
+        </mat-form-field>
+
+        <br>
+        <mat-form-field class="form-fields">
+            <mat-label>Mob No</mat-label>
+            <input type="text" matInput formControlName="mob" appNumbersOnly>
+
+            <mat-hint>Please enter mob no </mat-hint>
+            <mat-error *ngIf="hoteRegiForm.get('mob')?.errors?.['maxlength'] && hoteRegiForm.get('mob')?.touched">
+                mob no should not more than 10 digits
+            </mat-error>
+            <mat-error *ngIf="hoteRegiForm.get('mob')?.errors?.['pattern'] 
+            && hoteRegiForm.get('mob')?.touched
+            && !hoteRegiForm.get('mob')?.errors?.['maxlength'] ">
+                Invalid pattern
+            </mat-error>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-fields">
+            <mat-label>Password</mat-label>
+            <input type="text" matInput formControlName="password">
+            <!-- <input 
+            [type]=" visible ? 'text' : 'password'"
+             (keyup)="passMatch()" matInput formControlName="password">
+            <mat-icon matSuffix *ngIf="visible" (click)="visiblePassword()">visibility</mat-icon>
+            <mat-icon matSuffix *ngIf="!visible" (click)="visiblePassword()">visibility_off</mat-icon> -->
+        </mat-form-field>
+        <br>
+        <mat-form-field class="form-fields">
+            <mat-label>Hotel Name</mat-label>
+            <input type="text" matInput formControlName="hotelName">
+        </mat-form-field>
+        <br>
+
+        <button *ngIf="this.dataById.length ==0" mat-raised-button color="accent" class="btn" (click)="register()"
+            [disabled]="!hoteRegiForm.valid">Register</button>
+        <button  *ngIf="this.dataById.length > 0" mat-raised-button color="accent" class="btn" (click)="update()"
+            [disabled]="!hoteRegiForm.valid">Update</button>
+        
+        </form>
+</div>
+
+<div *ngIf="showHotels">
+    <table>
+        <tr>
+            <th *ngFor="let headings of tableHeading">{{headings}}</th>
+        </tr>
+        <tr *ngFor="let data of list" >
+            <td>{{data.hotelName}}</td>
+            <td>{{data.hotelContact}}</td>
+            <td>{{data.city}}</td>
+            <td>{{data.speciality}}</td>
+            <td><mat-icon (click)="edit(data.id)">edit</mat-icon></td>
+            <td><mat-icon>delete</mat-icon></td>
+        </tr>
+    </table>
+</div>

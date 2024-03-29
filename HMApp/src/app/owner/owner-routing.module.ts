@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OwnerLandingComponent } from './owner-landing/owner-landing.component';
 
 const routes: Routes = [
-  { path: '', component: OwnerLandingComponent}
+  { path: '', component:OwnerLandingComponent}
 ];
 
 @NgModule({
